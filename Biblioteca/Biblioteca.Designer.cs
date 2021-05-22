@@ -70,18 +70,22 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.comboSocioPrestamo = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.comboEjemplarPrestamo = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.comboLibroPrestamo = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.btnConsultaCupo = new System.Windows.Forms.Button();
             this.btnPrestamo = new System.Windows.Forms.Button();
+            this.comboEjemplarPrestamo = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnHistorial = new System.Windows.Forms.Button();
+            this.lblHistorial = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -95,7 +99,7 @@
             this.groupBox1.Controls.Add(this.btnAgregarLibro);
             this.groupBox1.Location = new System.Drawing.Point(12, 68);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(309, 123);
+            this.groupBox1.Size = new System.Drawing.Size(325, 123);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Libros";
@@ -173,7 +177,7 @@
             this.groupBox2.Controls.Add(this.chkSocioVip);
             this.groupBox2.Location = new System.Drawing.Point(12, 197);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(309, 169);
+            this.groupBox2.Size = new System.Drawing.Size(325, 169);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Socios";
@@ -275,7 +279,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 9);
+            this.label1.Location = new System.Drawing.Point(450, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 31);
             this.label1.TabIndex = 2;
@@ -290,7 +294,7 @@
             this.groupBox4.Controls.Add(this.txtUbicacionEjemplar);
             this.groupBox4.Controls.Add(this.txtEdicionEjemplar);
             this.groupBox4.Controls.Add(this.btnAgregarEjemplar);
-            this.groupBox4.Location = new System.Drawing.Point(365, 22);
+            this.groupBox4.Location = new System.Drawing.Point(375, 68);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(342, 123);
             this.groupBox4.TabIndex = 4;
@@ -363,16 +367,16 @@
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.comboEjemplarDevolucion);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Location = new System.Drawing.Point(365, 151);
+            this.groupBox3.Location = new System.Drawing.Point(12, 389);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(342, 121);
+            this.groupBox3.Size = new System.Drawing.Size(325, 121);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Devolución";
             // 
             // btnDevolverEjemplar
             // 
-            this.btnDevolverEjemplar.Location = new System.Drawing.Point(239, 46);
+            this.btnDevolverEjemplar.Location = new System.Drawing.Point(206, 46);
             this.btnDevolverEjemplar.Name = "btnDevolverEjemplar";
             this.btnDevolverEjemplar.Size = new System.Drawing.Size(97, 38);
             this.btnDevolverEjemplar.TabIndex = 24;
@@ -387,6 +391,7 @@
             this.comboSocioDevolucion.Name = "comboSocioDevolucion";
             this.comboSocioDevolucion.Size = new System.Drawing.Size(134, 21);
             this.comboSocioDevolucion.TabIndex = 22;
+            this.comboSocioDevolucion.SelectedValueChanged += new System.EventHandler(this.comboSocioDevolucion_SelectedValueChanged);
             // 
             // label13
             // 
@@ -419,7 +424,7 @@
             this.groupBox5.Controls.Add(this.btnConsultaEjemplar);
             this.groupBox5.Controls.Add(this.comboLibroConsulta);
             this.groupBox5.Controls.Add(this.lk);
-            this.groupBox5.Location = new System.Drawing.Point(365, 279);
+            this.groupBox5.Location = new System.Drawing.Point(375, 207);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(342, 87);
             this.groupBox5.TabIndex = 26;
@@ -463,7 +468,7 @@
             this.groupBox6.Controls.Add(this.label17);
             this.groupBox6.Controls.Add(this.btnConsultaCupo);
             this.groupBox6.Controls.Add(this.btnPrestamo);
-            this.groupBox6.Location = new System.Drawing.Point(170, 390);
+            this.groupBox6.Location = new System.Drawing.Point(375, 314);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(342, 145);
             this.groupBox6.TabIndex = 27;
@@ -487,23 +492,6 @@
             this.label15.TabIndex = 21;
             this.label15.Text = "Socio";
             // 
-            // comboEjemplarPrestamo
-            // 
-            this.comboEjemplarPrestamo.FormattingEnabled = true;
-            this.comboEjemplarPrestamo.Location = new System.Drawing.Point(53, 51);
-            this.comboEjemplarPrestamo.Name = "comboEjemplarPrestamo";
-            this.comboEjemplarPrestamo.Size = new System.Drawing.Size(134, 21);
-            this.comboEjemplarPrestamo.TabIndex = 20;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 54);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(47, 13);
-            this.label16.TabIndex = 19;
-            this.label16.Text = "Ejemplar";
-            // 
             // comboLibroPrestamo
             // 
             this.comboLibroPrestamo.FormattingEnabled = true;
@@ -511,6 +499,7 @@
             this.comboLibroPrestamo.Name = "comboLibroPrestamo";
             this.comboLibroPrestamo.Size = new System.Drawing.Size(134, 21);
             this.comboLibroPrestamo.TabIndex = 18;
+            this.comboLibroPrestamo.SelectedValueChanged += new System.EventHandler(this.comboLibroPrestamo_SelectedValueChanged);
             // 
             // label17
             // 
@@ -541,11 +530,57 @@
             this.btnPrestamo.UseVisualStyleBackColor = true;
             this.btnPrestamo.Click += new System.EventHandler(this.btnPrestamo_Click);
             // 
+            // comboEjemplarPrestamo
+            // 
+            this.comboEjemplarPrestamo.FormattingEnabled = true;
+            this.comboEjemplarPrestamo.Location = new System.Drawing.Point(53, 51);
+            this.comboEjemplarPrestamo.Name = "comboEjemplarPrestamo";
+            this.comboEjemplarPrestamo.Size = new System.Drawing.Size(134, 21);
+            this.comboEjemplarPrestamo.TabIndex = 20;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 54);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(47, 13);
+            this.label16.TabIndex = 19;
+            this.label16.Text = "Ejemplar";
+            // 
+            // btnHistorial
+            // 
+            this.btnHistorial.Location = new System.Drawing.Point(818, 30);
+            this.btnHistorial.Name = "btnHistorial";
+            this.btnHistorial.Size = new System.Drawing.Size(97, 38);
+            this.btnHistorial.TabIndex = 23;
+            this.btnHistorial.Text = "Historial de Préstamos";
+            this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
+            // 
+            // lblHistorial
+            // 
+            this.lblHistorial.AutoSize = true;
+            this.lblHistorial.Location = new System.Drawing.Point(21, 26);
+            this.lblHistorial.Name = "lblHistorial";
+            this.lblHistorial.Size = new System.Drawing.Size(0, 13);
+            this.lblHistorial.TabIndex = 28;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.lblHistorial);
+            this.groupBox7.Location = new System.Drawing.Point(729, 76);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(264, 473);
+            this.groupBox7.TabIndex = 29;
+            this.groupBox7.TabStop = false;
+            // 
             // Biblioteca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 573);
+            this.ClientSize = new System.Drawing.Size(1007, 573);
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.btnHistorial);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
@@ -567,6 +602,8 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -616,12 +653,15 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ComboBox comboSocioPrestamo;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboEjemplarPrestamo;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox comboLibroPrestamo;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnConsultaCupo;
         private System.Windows.Forms.Button btnPrestamo;
+        private System.Windows.Forms.ComboBox comboEjemplarPrestamo;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnHistorial;
+        private System.Windows.Forms.Label lblHistorial;
+        private System.Windows.Forms.GroupBox groupBox7;
     }
 }
 

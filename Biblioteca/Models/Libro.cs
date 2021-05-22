@@ -13,16 +13,12 @@ namespace Biblioteca.Models
         public string Autor { get; set; }
         public List<Ejemplar> Ejemplares { get; set; }
 
-        public Libro()
+        public Libro(string nombre, string codigoISBN, string autor, List<Ejemplar> ejemplares)
         {
-            Ejemplares = new List<Ejemplar>();
-        }
-
-        public Libro(string n, string c, string a)
-        {
-            Nombre = n;
-            CodigoISBN = c;
-            Autor = a;
+            Nombre = nombre;
+            CodigoISBN = codigoISBN;
+            Autor = autor;
+            Ejemplares = ejemplares;
         }
 
         public void AgregarEjemplar(Ejemplar e)
@@ -37,10 +33,10 @@ namespace Biblioteca.Models
                 return false;
         }
 
-        public void PrestarEjemplar()
+        public void PrestarEjemplar(Ejemplar e)
         {
             if (ConsultarEjemplares())
-                Ejemplares.RemoveAt(0);
+                Ejemplares.Remove(e);
         }
 
         public void ReingresarEjemplar(Ejemplar e)
