@@ -199,8 +199,8 @@ namespace Biblioteca
                 {
                     comboSocioPrestamo.BackColor = Color.White;
 
-                    string nombreS = comboSocioDevolucion.Text.Split('-')[0];
-                    string apellidoS = comboSocioDevolucion.Text.Split('-')[1];
+                    string nombreS = comboSocioPrestamo.Text.Split('-')[0];
+                    string apellidoS = comboSocioPrestamo.Text.Split('-')[1];
 
                     var socio = socios.Find(i => i.Nombre == nombreS && i.Apellido == apellidoS);
 

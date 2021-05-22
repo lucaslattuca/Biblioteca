@@ -17,7 +17,7 @@ namespace Biblioteca.Models
         {
             Socio = s;
             Ejemplar = e;
-            Fecha = new DateTime();
+            Fecha = DateTime.Now;
         }
 
     }
