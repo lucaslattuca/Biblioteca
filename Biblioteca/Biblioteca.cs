@@ -28,28 +28,37 @@ namespace Biblioteca
             bool validarISBN = Utiles.Utiles.ValidarCampo(txtISBN.Text, "string");
             bool validarAutor = Utiles.Utiles.ValidarCampo(txtAutor.Text, "string");
 
-            if (!validarNombre || !validarISBN || !validarAutor)
+            try
             {
-                txtNombreL.BackColor = Color.Red;
-                txtISBN.BackColor = Color.Red;
-                txtAutor.BackColor = Color.Red;
-                MessageBox.Show("Todos los campos son obligatorios");
+                if (!validarNombre || !validarISBN || !validarAutor)
+                {
+                    txtNombreL.BackColor = Color.Red;
+                    txtISBN.BackColor = Color.Red;
+                    txtAutor.BackColor = Color.Red;
+                    MessageBox.Show("Todos los campos son obligatorios");
+                }
+                else
+                {
+                    txtNombreL.BackColor = Color.White;
+                    txtISBN.BackColor = Color.White;
+                    txtAutor.BackColor = Color.White;
+
+                    Libro libro = new Libro(txtNombreL.Text, txtISBN.Text, txtAutor.Text, new List<Ejemplar>());
+                    comboLibroEjemplar.Items.Add($"{libro.Nombre}-{libro.Autor}");
+                    comboLibroConsulta.Items.Add($"{libro.Nombre}-{libro.Autor}");
+                    comboLibroPrestamo.Items.Add($"{libro.Nombre}-{libro.Autor}");
+                    libros.Add(libro);
+
+                    MessageBox.Show("Libro agregado con éxito");
+
+                    txtNombreL.Clear();
+                    txtISBN.Clear();
+                    txtAutor.Clear();
+                }
             }
-            else
+            catch (Exception)
             {
-                txtNombreL.BackColor = Color.White;
-                txtISBN.BackColor = Color.White;
-                txtAutor.BackColor = Color.White;
-
-                Libro libro = new Libro(txtNombreL.Text, txtISBN.Text, txtAutor.Text, new List<Ejemplar>());
-                comboLibroEjemplar.Items.Add($"{libro.Nombre}-{libro.Autor}");
-                comboLibroConsulta.Items.Add($"{libro.Nombre}-{libro.Autor}");
-                comboLibroPrestamo.Items.Add($"{libro.Nombre}-{libro.Autor}");
-                libros.Add(libro);
-
-                txtNombreL.Clear();
-                txtISBN.Clear();
-                txtAutor.Clear();
+                MessageBox.Show("Ocurrió un error al agregar el libro");
             }
         }
         private void btnAgregarSocio_Click(object sender, EventArgs e)
@@ -59,60 +68,69 @@ namespace Biblioteca
             bool validarId = Utiles.Utiles.ValidarCampo(txtIdS.Text, "int");
             bool validarCuota = Utiles.Utiles.ValidarCampo(txtCuota.Text, "double");
 
-
-            if (!validarNombre || !validarApellido || !validarId)
+            try
             {
-                txtNombreS.BackColor = Color.Red;
-                txtApellidoS.BackColor = Color.Red;
-                MessageBox.Show("Todos los campos son obligatorios");
-                if (!validarId)
+                if (!validarNombre || !validarApellido || !validarId)
                 {
-                    txtIdS.BackColor = Color.Red;
-                    MessageBox.Show("El campo es obligatorio y numerico");
-                }
-                else
-                {
-                    txtIdS.BackColor = Color.White;
-                }
-
-            }
-            else
-            {
-                txtNombreS.BackColor = Color.White;
-                txtApellidoS.BackColor = Color.White;
-
-                string nombre = txtNombreS.Text;
-                string apellido = txtApellidoS.Text;
-                long id = long.Parse(txtIdS.Text);
-
-                if (chkSocioVip.Checked)
-                {
-                    if (!validarCuota)
+                    txtNombreS.BackColor = Color.Red;
+                    txtApellidoS.BackColor = Color.Red;
+                    MessageBox.Show("Todos los campos son obligatorios");
+                    if (!validarId)
                     {
-                        txtCuota.BackColor = Color.Red;
-                        MessageBox.Show("Debe ingresar un valor de cuota");
+                        txtIdS.BackColor = Color.Red;
+                        MessageBox.Show("El campo es obligatorio y numerico");
                     }
                     else
                     {
-                        txtCuota.BackColor = Color.White;
-                        double cuota = double.Parse(txtCuota.Text);
-                        SocioVip socioVip = new SocioVip(nombre, apellido, id, cuota);
-                        socios.Add(socioVip);
-                        comboSocioPrestamo.Items.Add($"{socioVip.Nombre}-{socioVip.Apellido}");
+                        txtIdS.BackColor = Color.White;
                     }
+
                 }
                 else
                 {
-                    SocioComun socioComun = new SocioComun(nombre, apellido, id);
-                    socios.Add(socioComun);
-                    comboSocioPrestamo.Items.Add($"{socioComun.Nombre}-{socioComun.Apellido}");
-                }
+                    txtNombreS.BackColor = Color.White;
+                    txtApellidoS.BackColor = Color.White;
 
-                txtNombreS.Clear();
-                txtApellidoS.Clear();
-                txtIdS.Clear();
-                txtCuota.Clear();
+                    string nombre = txtNombreS.Text;
+                    string apellido = txtApellidoS.Text;
+                    long id = long.Parse(txtIdS.Text);
+
+                    if (chkSocioVip.Checked)
+                    {
+                        if (!validarCuota)
+                        {
+                            txtCuota.BackColor = Color.Red;
+                            MessageBox.Show("Debe ingresar un valor de cuota");
+                        }
+                        else
+                        {
+                            txtCuota.BackColor = Color.White;
+                            double cuota = double.Parse(txtCuota.Text);
+                            SocioVip socioVip = new SocioVip(nombre, apellido, id, cuota);
+                            socios.Add(socioVip);
+                            comboSocioPrestamo.Items.Add($"{socioVip.Nombre}-{socioVip.Apellido}");
+                        }
+                    }
+                    else
+                    {
+                        SocioComun socioComun = new SocioComun(nombre, apellido, id);
+                        socios.Add(socioComun);
+                        comboSocioPrestamo.Items.Add($"{socioComun.Nombre}-{socioComun.Apellido}");
+
+                        MessageBox.Show("Socio agregado con éxito");
+                    }
+
+                    txtNombreS.Clear();
+                    txtApellidoS.Clear();
+                    txtIdS.Clear();
+                    txtCuota.Clear();
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrió un error al agregar el socio");
+            }
+
         }
 
         private void btnAgregarEjemplar_Click(object sender, EventArgs e)
@@ -121,42 +139,51 @@ namespace Biblioteca
             bool validarUbicacion = Utiles.Utiles.ValidarCampo(txtUbicacionEjemplar.Text, "string");
             bool validarLibro = Utiles.Utiles.ValidarCampo(comboLibroEjemplar.Text, "string");
 
-
-            if (!validarUbicacion || !validarLibro || !validarEdicion)
+            try
             {
-                txtUbicacionEjemplar.BackColor = Color.Red;
-                comboLibroEjemplar.BackColor = Color.Red;
-                MessageBox.Show("Todos los campos son obligatorios");
-                if (!validarEdicion)
+                if (!validarUbicacion || !validarLibro || !validarEdicion)
                 {
-                    txtEdicionEjemplar.BackColor = Color.Red;
-                    MessageBox.Show("El campo es obligatorio y numerico");
+                    txtUbicacionEjemplar.BackColor = Color.Red;
+                    comboLibroEjemplar.BackColor = Color.Red;
+                    MessageBox.Show("Todos los campos son obligatorios");
+                    if (!validarEdicion)
+                    {
+                        txtEdicionEjemplar.BackColor = Color.Red;
+                        MessageBox.Show("El campo es obligatorio y numerico");
+                    }
+                    else
+                    {
+                        txtEdicionEjemplar.BackColor = Color.White;
+                    }
                 }
                 else
                 {
-                    txtEdicionEjemplar.BackColor = Color.White;
+                    txtUbicacionEjemplar.BackColor = Color.White;
+                    comboLibroEjemplar.BackColor = Color.White;
+
+                    string ubicacion = txtUbicacionEjemplar.Text;
+                    long edicion = long.Parse(txtEdicionEjemplar.Text);
+                    string nombreL = comboLibroEjemplar.Text.Split('-')[0];
+                    string autorL = comboLibroEjemplar.Text.Split('-')[1];
+
+                    var libro = libros.Find(i => i.Nombre == nombreL && i.Autor == autorL);
+
+                    Ejemplar ejemplar = new Ejemplar(edicion, ubicacion, libro);
+
+                    libro.AgregarEjemplar(ejemplar);
+
+                    txtUbicacionEjemplar.Clear();
+                    txtEdicionEjemplar.Clear();
+                    comboLibroEjemplar.Items.Clear();
+
+                    MessageBox.Show("Se agregó el ejemplar con éxito");
                 }
             }
-            else
+            catch (Exception)
             {
-                txtUbicacionEjemplar.BackColor = Color.White;
-                comboLibroEjemplar.BackColor = Color.White;
-
-                string ubicacion = txtUbicacionEjemplar.Text;
-                long edicion = long.Parse(txtEdicionEjemplar.Text);
-                string nombreL = comboLibroEjemplar.Text.Split('-')[0];
-                string autorL = comboLibroEjemplar.Text.Split('-')[1];
-
-                var libro = libros.Find(i => i.Nombre == nombreL && i.Autor == autorL);
-
-                Ejemplar ejemplar = new Ejemplar(edicion, ubicacion, libro);
-
-                libro.AgregarEjemplar(ejemplar);
-
-                txtUbicacionEjemplar.Clear();
-                txtEdicionEjemplar.Clear();
-                comboLibroEjemplar.Items.Clear();
+                MessageBox.Show("Ocurrió un error al agregar el ejemplar");
             }
+
         }
 
         private void btnConsultaEjemplar_Click(object sender, EventArgs e)
@@ -223,42 +250,51 @@ namespace Biblioteca
 
             if (socios.Any() && libros.Any())
             {
-                if (!validarSocio || !validarEjemplar || !validarLibro)
+                try
                 {
-                    comboSocioPrestamo.BackColor = Color.Red;
-                    comboLibroPrestamo.BackColor = Color.Red;
-                    comboEjemplarPrestamo.BackColor = Color.Red;
-                    MessageBox.Show("Todos los campos son obligatorios");
+                    if (!validarSocio || !validarEjemplar || !validarLibro)
+                    {
+                        comboSocioPrestamo.BackColor = Color.Red;
+                        comboLibroPrestamo.BackColor = Color.Red;
+                        comboEjemplarPrestamo.BackColor = Color.Red;
+                        MessageBox.Show("Todos los campos son obligatorios");
+                    }
+                    else
+                    {
+                        comboSocioPrestamo.BackColor = Color.White;
+                        comboLibroPrestamo.BackColor = Color.White;
+                        comboEjemplarPrestamo.BackColor = Color.White;
+
+                        string nombreS = comboSocioPrestamo.Text.Split('-')[0];
+                        string apellidoS = comboSocioPrestamo.Text.Split('-')[1];
+                        var socio = socios.Find(i => i.Nombre == nombreS && i.Apellido == apellidoS);
+
+                        string nombreL = comboLibroPrestamo.Text.Split('-')[0];
+                        string autorL = comboLibroPrestamo.Text.Split('-')[1];
+                        var libro = libros.Find(i => i.Nombre == nombreL && i.Autor == autorL);
+
+                        long edicionEj = long.Parse(comboEjemplarPrestamo.Text.Split('-')[0]);
+                        string libroEj = comboEjemplarPrestamo.Text.Split('-')[1];
+                        string autorEj = comboEjemplarPrestamo.Text.Split('-')[2];
+                        var ejemplar = libro.Ejemplares.Find(i => i.NroEdicion == edicionEj && i.Libro.Nombre == libroEj && i.Libro.Autor == autorEj);
+
+                        socio.PedirEjemplar(ejemplar);
+                        libro.PrestarEjemplar(ejemplar);
+
+                        Prestamo prestamo = new Prestamo(socio, ejemplar);
+
+                        prestamos.Add(prestamo);
+
+                        comboSocioPrestamo.Items.Clear();
+                        comboEjemplarPrestamo.Items.Clear();
+                        comboLibroPrestamo.Items.Clear();
+
+                        MessageBox.Show("Prestamo realizado con éxito");
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    comboSocioPrestamo.BackColor = Color.White;
-                    comboLibroPrestamo.BackColor = Color.White;
-                    comboEjemplarPrestamo.BackColor = Color.White;
-
-                    string nombreS = comboSocioPrestamo.Text.Split('-')[0];
-                    string apellidoS = comboSocioPrestamo.Text.Split('-')[1];
-                    var socio = socios.Find(i => i.Nombre == nombreS && i.Apellido == apellidoS);
-
-                    string nombreL = comboLibroPrestamo.Text.Split('-')[0];
-                    string autorL = comboLibroPrestamo.Text.Split('-')[1];
-                    var libro = libros.Find(i => i.Nombre == nombreL && i.Autor == autorL);
-
-                    long edicionEj = long.Parse(comboEjemplarPrestamo.Text.Split('-')[0]);
-                    string libroEj = comboEjemplarPrestamo.Text.Split('-')[1];
-                    string autorEj = comboEjemplarPrestamo.Text.Split('-')[2];
-                    var ejemplar = libro.Ejemplares.Find(i => i.NroEdicion == edicionEj && i.Libro.Nombre == libroEj && i.Libro.Autor == autorEj);
-
-                    socio.PedirEjemplar(ejemplar);
-                    libro.PrestarEjemplar(ejemplar);
-
-                    Prestamo prestamo = new Prestamo(socio, ejemplar);
-
-                    prestamos.Add(prestamo);
-
-                    comboSocioPrestamo.Items.Clear();
-                    comboEjemplarPrestamo.Items.Clear();
-                    comboLibroPrestamo.Items.Clear();
+                    MessageBox.Show("Ocurrió un error al realizar el prestamo");
                 }
             }
             else
@@ -350,7 +386,7 @@ namespace Biblioteca
         {
             bool validarSocio = Utiles.Utiles.ValidarCampo(comboSocioDevolucion.Text, "string");
 
-            if (comboLibroPrestamo.SelectedIndex != -1 && validarSocio)
+            if (comboSocioDevolucion.SelectedIndex != -1 && validarSocio)
             {
                 string nombreS = comboSocioDevolucion.Text.Split('-')[0];
                 string apellidoS = comboSocioDevolucion.Text.Split('-')[1];
