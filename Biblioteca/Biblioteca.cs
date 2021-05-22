@@ -90,6 +90,7 @@ namespace Biblioteca
                 {
                     txtNombreS.BackColor = Color.White;
                     txtApellidoS.BackColor = Color.White;
+                    txtIdS.BackColor = Color.White;
 
                     string nombre = txtNombreS.Text;
                     string apellido = txtApellidoS.Text;
@@ -160,6 +161,7 @@ namespace Biblioteca
                 {
                     txtUbicacionEjemplar.BackColor = Color.White;
                     comboLibroEjemplar.BackColor = Color.White;
+                    txtEdicionEjemplar.BackColor = Color.White;
 
                     string ubicacion = txtUbicacionEjemplar.Text;
                     long edicion = long.Parse(txtEdicionEjemplar.Text);
