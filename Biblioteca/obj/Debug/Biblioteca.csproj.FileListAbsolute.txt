@@ -1,0 +1,9 @@
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\bin\Debug\Biblioteca.exe.config
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\bin\Debug\Biblioteca.exe
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\bin\Debug\Biblioteca.pdb
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csprojAssemblyReference.cache
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.Biblioteca.resources
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.Properties.Resources.resources
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csproj.GenerateResource.cache
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.exe
+D:\Lucas\Documents\Projects\Biblioteca\Biblioteca\obj\Debug\Biblioteca.pdb
